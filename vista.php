@@ -1,12 +1,21 @@
 <?php
-include_once'bd.php';
-$gsent = $pdo->prepare('SELECT * FROM `productos`');
-$gsent->execute();
-$productos = $gsent->fetchALL();
+include ("bd.php");
+if (isset($_POST['borrar'])) {
+    foreach($_POST['check'] AS $value) {
+        $gsent = $pdo->prepare("DELETE FROM `productos` WHERE `id` = $value");
+        $gsent->execute();
+    }
+}
+include ("bd.php");
+if (isset($_POST['editar'])) {
+
+}
+if (isset($_POST['ver'])) {
+
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,13 +28,13 @@ $productos = $gsent->fetchALL();
                 $("#checkboxes input[type='checkbox']").prop('checked',this.checked);
             });
         });
+
     </script>
 </head>
-
 <body>
-    <form id="checkboxes">
-        <table class="table">
-            <thead class="thead-dark">
+    <form id="checkboxes" method="POST">
+        <table class="table" >
+            <thead class="thead-dark" >
                 <tr>
                     <th scope="col"><input type="checkbox" id="todes"></th>
                     <th scope="col">#id</th>
@@ -36,23 +45,26 @@ $productos = $gsent->fetchALL();
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($productos as $dato) : ?>
-                    <tr>
-                        <td><input type="checkbox" ></td>
-                        <td scope="row"><?php echo $dato["id"] ?></td>
-                        <td><?php echo  $dato["nombre"] ?></td>
-                        <td><?php echo $dato["precio"] ?></td>
-                        <td><?php echo $dato["categoria"] ?></td>
-                        <td><?php echo $dato["temporada"] ?></td>
-                    </tr>
-                <?php endforeach ?>
+            <?php 
+                $gsent = $pdo->prepare('SELECT * FROM `productos`');
+                $gsent->execute();
+                while($productos = $gsent->fetch()) {
+                    $id=$productos['id'];
+                    $n=$productos['nombre'];
+                    $p=$productos['precio'];
+                    $c=$productos['categoria'];
+                    $t=$productos['temporada'];
+
+                    echo "<tr><td><input type='checkbox' name='check[]' value='$id' ></td>
+                    <td scope='row'>$id</td><td>$n</td><td>$p</td><td>$c</td><td>$t</td> </tr> ";
+                }
+            ?>
             </tbody>
         </table>
+        <input type="submit" name="borrar" value="borrar seleccion">
+        <input href="vista.php" type="submit" name="editar" value="editar">
+        <input type="submit" name="ver" value="ver">
     </form>
-    <button>editar</button>
-    <button>ver</button>
-    <button>eliminar</button>
-
 
 </body>
 

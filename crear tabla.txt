@@ -1,0 +1,1 @@
+CREATE TABLE `lab04`.`productos` (`id` INT NOT NULL , `nombre` VARCHAR(150) NOT NULL , `imagen` LONGBLOB NOT NULL , `precio` INT NOT NULL , `categoria` VARCHAR(200) NOT NULL , `temporada` VARCHAR(50) NOT NULL , `fechaingreso` DATE NOT NULL , `descripcion` TEXT NOT NULL ) ENGINE = InnoDB;

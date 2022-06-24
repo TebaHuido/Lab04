@@ -1,17 +1,23 @@
 <?php
 include_once'bd.php';
-$gsent = $pdo->prepare('SELECT * FROM `productos` WHERE `id`= 4');
+$gsent = $pdo->prepare('SELECT * FROM `productos` WHERE `id`= 33');
 $gsent->execute();
 $producto = $gsent->fetchALL();
+
 if (isset($_POST['editar'])) {
-    if(is_uploaded_file($_FILES['imagen']['tmp_name'])){
-        $imagen=addslashes(file_get_contents($_FILES['imagen']['tmp_name']));
-        $gsent2=$pdo->prepare("UPDATE `productos` SET `nombre` = '".$_POST('nombre')."', `precio` = '".$_POST['precio']."', `categoria` = '".$_POST['precio']."', `temporada` = 'temporada4s', `fechaingreso` = '1999-09-15', `descripcion` = 'ahhhhhhhha' WHERE `productos`.`id` = 3");
+
+        $id=$producto[0]['id'];
+        $n=$_POST['nombre'];
+        $p=$_POST['precio'];
+        $d=$_POST['descripcion'];
+        $c=$_POST['categoria'];
+        $f=$_POST['fecha'];
+        $t=$_POST['temporada'];
+
+        $gsent2=$pdo->prepare("UPDATE `productos` SET `nombre`='$n',`precio`='$p',
+        `categoria`='$c',`temporada`='$t',`fechaingreso`='$f',`descripcion`='$d' WHERE id=$id");
         $gsent2->execute();
-    }else{
-        $gsent2=$pdo->prepare("UPDATE INTO `productos` (`nombre`, `precio`, `categoria`, `temporada`, `fechaingreso`, `descripcion`) VALUES ('". $_POST['nombre']."','". $_POST['precio']."','".$_POST['categoria']."','". $_POST['temporada']."','". $_POST['fecha']."','". $_POST['descripcion']."')WHERE id :'".$producto[0]['id'].'"');
-        $gsent2->execute();
-    }
+    
 }
 
 ?>

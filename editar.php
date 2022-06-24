@@ -1,22 +1,30 @@
 <?php
 include_once'bd.php';
-$gsent = $pdo->prepare('SELECT * FROM `productos` WHERE `id`= 33');
+$gsent = $pdo->prepare('SELECT * FROM `productos` WHERE `id`= '.$_GET['id']);
 $gsent->execute();
 $producto = $gsent->fetchALL();
 
 if (isset($_POST['editar'])) {
-
-        $id=$producto[0]['id'];
+    $id=$producto[0]['id'];
         $n=$_POST['nombre'];
         $p=$_POST['precio'];
         $d=$_POST['descripcion'];
         $c=$_POST['categoria'];
         $f=$_POST['fecha'];
         $t=$_POST['temporada'];
-
+    if(is_uploaded_file($_FILES['imagen']['tmp_name'])){
+        $imagen=addslashes(file_get_contents($_FILES['imagen']['tmp_name']));
+        $gsent2=$pdo->prepare("UPDATE `productos` SET `imagen`='$imagen',`nombre`='$n',`precio`='$p',
+        `categoria`='$c',`temporada`='$t',`fechaingreso`='$f',`descripcion`='$d' WHERE id=$id");
+        $gsent2->execute();
+        header('Location: '.'index.php');
+    }else{
         $gsent2=$pdo->prepare("UPDATE `productos` SET `nombre`='$n',`precio`='$p',
         `categoria`='$c',`temporada`='$t',`fechaingreso`='$f',`descripcion`='$d' WHERE id=$id");
         $gsent2->execute();
+        header('Location: '.'index.php');
+    }
+        
     
 }
 

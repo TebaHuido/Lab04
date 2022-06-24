@@ -1,3 +1,29 @@
+<?php
+include ("bd.php");
+if (isset($_POST['borrar'])) {
+    foreach($_POST['check'] AS $value) {
+        $gsent = $pdo->prepare("DELETE FROM `productos` WHERE `id` = $value");
+        $gsent->execute();
+    }
+}
+if (isset($_POST['editar'])) {
+    if(sizeof($_POST['check'])== 1){
+        foreach($_POST['check'] AS $value){
+            header('Location: editar.php?id='.$value);
+        }
+    }else{
+        echo '<div class="alert alert-danger" role="alert">
+        Solo se puede editar un elemento a la vez!
+      </div>';
+    } 
+}
+if (isset($_POST['ver'])) {
+
+}
+if (isset($_POST['agregar'])) {
+    header('Location: agregar.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,30 +31,51 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script>
+        $(document).ready(function(){
+            $("#checkboxes #todes").click(function(){
+                $("#checkboxes input[type='checkbox']").prop('checked',this.checked);
+            });
+        });
+    </script>
 </head>
 <body>
-    <form action="./subir.php" method="POST" enctype="multipart/form-data">
-        <input required name="nombre" class="form-control" type="text" placeholder="Nombre"><br>
-        <input required name="precio" class="form-control" type="number" placeholder="Precio"><br>
-        <input required type="file" name="imagen"/><br>
-        <textarea required name="descripcion"  rows="4" cols="50" placeholder="Descripcion del producto"></textarea><br>
-            <!--Selector para categoria -->
-        <select required name="categoria" class="form-control form-control-sm">
-            <option>categoria 1</option>
-            <option>categoria 2</option>
-            <option>categoria 3</option>
-        </select><br>
-        <input required name="fecha" class="form-control" type="date" placeholder="Fecha de ingreso"><br>
+    <form id="checkboxes" method="POST">
+        <table class="table" >
+            <thead class="thead-dark" >
+                <tr>
+                    <th scope="col"><input type="checkbox" id="todes"></th>
+                    <th scope="col">#id</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Categoria</th>
+                    <th scope="col">Temporada</th>
+                </tr>
+            </thead>
+            <tbody>
+            <?php 
+                $gsent = $pdo->prepare('SELECT * FROM `productos`');
+                $gsent->execute();
+                while($productos = $gsent->fetch()) {
+                    $id=$productos['id'];
+                    $n=$productos['nombre'];
+                    $p=$productos['precio'];
+                    $c=$productos['categoria'];
+                    $t=$productos['temporada'];
 
-        <input required type="radio" id="temp1" name="temporada" value="temporada1">
-        <label for="temp1">temporada1</label><br>
-        <input required type="radio" id="temp2" name="temporada" value="temporada2">
-        <label for="temp2">temporada2</label><br>
-        <input required type="radio" id="temp3" name="temporada" value="temporada3">
-        <label required for="temp3">temporada3</label><br>
-        <input type="radio" id="temp4" name="temporada" value="temporada4">
-        <label required for="temp4">temporada4</label><br><br>
-        <input type="submit" value="Submit">
+                    echo "<tr><td><input type='checkbox' name='check[]' value='$id' ></td>
+                    <td scope='row'>$id</td><td>$n</td><td>$p</td><td>$c</td><td>$t</td> </tr> ";
+                }
+            ?>
+            </tbody>
+        </table>
+        <input type="submit" name="borrar" value="borrar seleccion">
+        <input type="submit" name="editar" value="editar">
+        <input type="submit" name="ver" value="ver">
+        <input type="submit" name="agregar" value="agregar">
     </form>
+
 </body>
+
 </html>

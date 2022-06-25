@@ -1,0 +1,59 @@
+body{
+    background-image: url(https://png.pngtree.com/thumb_back/fw800/background/20190223/ourmid/pngtree-minimalistic-blue-background-template-design-bluebluesimplecolor-backgroundgeneral-backgroundposter-image_67314.jpg);
+    background-repeat: no-repeat;
+    background-size: cover ;
+}
+
+h1{
+    text-align: center;
+    color: rgb(16, 149, 179);
+    font-size: 80px;
+    font-style:italic;
+  }
+  h2{
+    color:rgb(16, 149, 179) ;
+    font-style: oblique;
+    text-align: center;   
+  }
+  h3 {
+    color:rgb(16, 149, 179) ;
+    font-style: oblique;
+  }
+  h4{
+      color:rgb(5, 94, 114)
+  }
+
+  input{
+      border-color:rgb(34, 143, 162) ;      
+  }
+  textarea{
+      border-color: rgb(34, 143, 162) ;
+      background-color: rgba(37, 232, 229, 0.392);
+  }
+  tr{
+    background-color: rgba(43, 217, 214, 0.689);
+}
+.tbo{
+    border-color: rgb(4, 113, 114);
+    border-style: double;
+    border-width: 6px;
+}
+.separaciontabla{
+    border-color: rgb(4, 113, 114);
+    border-style: none solid solid none;    
+    border-width: 2px;
+}
+.separaciontabla2{
+  border-color: rgb(4, 113, 114);
+  border-style: none none solid none;    
+  border-width: 2px;
+}
+
+
+  @media (max-width: 780px) {
+h1{
+    font-size: 50px;
+}
+
+
+}

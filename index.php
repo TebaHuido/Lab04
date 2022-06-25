@@ -18,7 +18,15 @@ if (isset($_POST['editar'])) {
     } 
 }
 if (isset($_POST['ver'])) {
-
+    if(sizeof($_POST['check'])== 1){
+        foreach($_POST['check'] AS $value){
+            header('Location: vista.php?id='.$value);
+        }
+    }else{
+        echo '<div class="alert alert-danger" role="alert">
+        Solo se puede visualizar un elemento a la vez!
+      </div>';
+    } 
 }
 if (isset($_POST['agregar'])) {
     header('Location: agregar.php');

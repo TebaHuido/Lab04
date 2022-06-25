@@ -14,20 +14,20 @@
         <textarea required name="descripcion"  rows="4" cols="50" placeholder="Descripcion del producto"></textarea><br>
             <!--Selector para categoria -->
         <select required name="categoria" class="form-control form-control-sm">
-            <option>categoria 1</option>
-            <option>categoria 2</option>
-            <option>categoria 3</option>
+            <option>Cena</option>
+            <option>Almuerzo</option>
+            <option>Desayuno</option>
         </select><br>
         <input required name="fecha" class="form-control" type="date" placeholder="Fecha de ingreso"><br>
 
-        <input required type="radio" id="temp1" name="temporada" value="temporada1">
-        <label for="temp1">temporada1</label><br>
-        <input required type="radio" id="temp2" name="temporada" value="temporada2">
-        <label for="temp2">temporada2</label><br>
-        <input required type="radio" id="temp3" name="temporada" value="temporada3">
-        <label required for="temp3">temporada3</label><br>
-        <input type="radio" id="temp4" name="temporada" value="temporada4">
-        <label required for="temp4">temporada4</label><br><br>
+        <input required type="radio" id="temp1" name="temporada" value="Invierno">
+        <label for="temp1">Invierno</label><br>
+        <input required type="radio" id="temp2" name="temporada" value="Primavera">
+        <label for="temp2">Primavera</label><br>
+        <input required type="radio" id="temp3" name="temporada" value="Verano">
+        <label required for="temp3">Verano</label><br>
+        <input type="radio" id="temp4" name="temporada" value="Otono">
+        <label required for="temp4">Otoño</label><br><br>
         <input type="submit" value="Submit">
     </form>
 </body>

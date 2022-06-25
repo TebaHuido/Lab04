@@ -28,7 +28,7 @@
                 </div>
                 <h3>Seleccione la imagen a subir: </h3>
 
-                <input required type="file" class="form-control-file" name="imagen" /><br>
+                <input required type="file" class="form-control-file" name="imagen" accept=".jpg,.png,.gif" /><br>
                 <textarea required name="descripcion" rows="4" cols="50" placeholder="Descripcion del producto"></textarea><br>
                 <!--Selector para categoria -->
                 <h3> Seleccione la categoría a la que pertenece: </h3>
@@ -55,10 +55,12 @@
                     <input required type="radio" class="form-check-input" id="temp4" name="temporada" value="Otono">
                     <label class="form-check-label" for="temp4">Otoño</label><br><br>
                 </div>
-                <input type="submit" class="btn btn-primary pill" value="Submit">
+                <input type="submit" class="btn btn-primary pill" value="Guardar">
+                
             </div>
         </div>
     </form>
+    <a class="container" href="index.php"><button class="btn btn-primary pill">Volver</button></a>
 </body>
 
 </html>

@@ -55,13 +55,13 @@ $producto = $gsent->fetchALL();
             </div>
     
             <div class="col">
-                <img src="data:image/jpg;base64,<?php echo base64_encode($producto[0]['imagen']); ?>" height="200px"><br>
+                <img src="data:image/jpg;base64,<?php echo base64_encode($producto[0]['imagen']); ?>" height="400px"><br>
 
             </div>
 
         </div>
     </div>
-
+    <a class="container" href="index.php"><button class="btn btn-primary pill">Volver</button></a>
 
 </body>
 

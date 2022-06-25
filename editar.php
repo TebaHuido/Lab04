@@ -62,7 +62,7 @@ if (isset($_POST['editar'])) {
                 <div class="input-group mb-2 col-8">
                     <div class="custom-file">
                         <input type="file" class="custom-file-input" name="imagen" id="imagenid">
-                        <label class="custom-file-label" for="imagenid">subir imagen</label>
+                        <label class="custom-file-label" for="imagenid" accept=".jpg,.png,.gif">subir imagen</label>
                     </div>
                 </div>
                 <h3>Descripción</h3>
@@ -91,7 +91,7 @@ if (isset($_POST['editar'])) {
                     <input required type="radio" id="temp4" class="form-check-input" name="temporada" value="Otono" <?php if ($producto[0]['temporada'] == 'Otono') echo 'checked="checked"'; ?>>
                     <label for="temp4">Otoño</label><br><br>
                 </div>
-                <input name="editar" class="btn btn-primary pill" type="submit" value="Submit">
+                <input name="editar" class="btn btn-primary pill" type="submit" value="Guardar y volver">
             </div>
         </div>
 
